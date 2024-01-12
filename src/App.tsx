@@ -33,13 +33,25 @@ function App() {
 
   function nextStep() {
     if (step < tutorialData.length - 1) {
-      setStep((prevStep) => prevStep + 1);
+      setStep((prev) => prev + 1);
+    }
+  }
+
+  function prevStep() {
+    if (step > 0) {
+      setStep((prev) => prev - 1);
     }
   }
 
   return (
     <div className="bg-base-100">
-      <Card {...currentData} addStep={nextStep} />
+      <Card
+        {...currentData}
+        addStep={nextStep}
+        substractStep={prevStep}
+        step={step}
+        numOfSteps={tutorialData.length}
+      />
     </div>
   );
 }
