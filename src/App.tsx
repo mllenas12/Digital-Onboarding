@@ -31,9 +31,15 @@ function App() {
   const [step, setStep] = useState(0);
   const currentData = tutorialData[step];
 
+  function nextStep() {
+    if (step < tutorialData.length - 1) {
+      setStep((prevStep) => prevStep + 1);
+    }
+  }
+
   return (
     <>
-      <Card {...currentData} />
+      <Card {...currentData} addStep={nextStep} />
     </>
   );
 }
