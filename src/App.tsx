@@ -1,6 +1,6 @@
 // import React from "react";
 import { useState } from "react";
-import tutorialData from "./data.json";
+import tutorialData from "./tutorialData.json";
 import "/src/styles.css";
 import Card from "./components/Card";
 
@@ -27,6 +27,7 @@ function App() {
         addStep={nextStep}
         substractStep={prevStep}
         step={step}
+        setStep={setStep}
         numOfSteps={tutorialData.length}
       />
     </div>

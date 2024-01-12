@@ -5,6 +5,7 @@ interface IndicatorProps {
   index: number;
   currentStep: number;
   numOfSteps: number;
+  onClick: () => void;
 }
 
 const StyledIndicator = styled.button<IndicatorProps>`
@@ -21,12 +22,14 @@ const Indicator: React.FC<IndicatorProps> = ({
   index,
   currentStep,
   numOfSteps,
+  onClick,
 }) => {
   return (
     <StyledIndicator
       index={index}
       currentStep={currentStep}
       numOfSteps={numOfSteps}
+      onClick={onClick}
     />
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
-import tutorialData from "/Users/mariallenas/Desktop/DEVELOPMENT/IT ACADEMY/Especialització - REACT/s5.Onboarding--digital/src/data.json";
-import Indicator from "/Users/mariallenas/Desktop/DEVELOPMENT/IT ACADEMY/Especialització - REACT/s5.Onboarding--digital/src/components/Indicator.tsx";
+import tutorialData from "../tutorialData.json";
+import Indicator from "./Indicator.tsx";
 
 interface CardProps {
   title: string;
@@ -10,6 +10,7 @@ interface CardProps {
   addStep: () => void;
   substractStep: () => void;
   step: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
   numOfSteps: number;
 }
 
@@ -21,18 +22,23 @@ const Card: React.FC<CardProps> = ({
   addStep,
   substractStep,
   step,
+  setStep,
   numOfSteps,
 }) => {
   const prevIsShown: boolean = step > 0 ? true : false;
   const nextIsShown: boolean = step < numOfSteps - 1 ? true : false;
 
   const indicators = tutorialData.map((tutorial, index) => {
+    const handleClickChange = () => {
+      setStep((prev) => (prev = index));
+    };
     return (
       <Indicator
         key={tutorial.title}
         index={index}
         currentStep={step}
         numOfSteps={tutorialData.length}
+        onClick={handleClickChange}
       />
     );
   });
@@ -46,7 +52,7 @@ const Card: React.FC<CardProps> = ({
         <h2 className="card-title text-base font-bold">{title}</h2>
         <p className="text-xs text-gray-500">{description}</p>
         <div className="card-actions  my-3">
-          <div className="flex flex-row my-auto me-auto ">{indicators}</div>
+          <div className="flex flex-row my-auto me-auto">{indicators}</div>
           {prevIsShown && (
             <button className="w-10" onClick={substractStep}>
               <img src="/public/img/row-button-prev.svg" alt="button next" />
